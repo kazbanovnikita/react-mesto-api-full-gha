@@ -5,7 +5,7 @@ import { Routes, Route, useLocation, Link } from "react-router-dom";
 function Header({userEmail, onSignOut, loggedIn}) {
   const location = useLocation();
     
-  const link = location.pathname === "/sign-in" ? "Регистрация" : "Войти";
+  const link = location.pathname === "/sign-in" ? "Регистрация" : "Войт";
   const buttonText = loggedIn ? "Выйти" : link;
 
   return (
