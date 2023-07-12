@@ -3,6 +3,7 @@ const allowedCors = [
   'https://localhost:3000',
   'http://localhost:3001',
   'http://api.nik24-mesto.nomoredomains.work',
+  'http://nik24-mesto.nomoredomains.work',
 ];
 
 const cors = (req, res, next) => {
