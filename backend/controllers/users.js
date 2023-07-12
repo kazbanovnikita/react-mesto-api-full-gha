@@ -25,7 +25,7 @@ const getUserById = (req, res, next) => {
 const getCurrentUser = (req, res, next) => {
   User.findById(req.user)
     .orFail(new NotFoundError('Пользователь не найден'))
-    .then((user) => res.send({ user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 
@@ -99,13 +99,13 @@ const login = (req, res, next) => {
 
   User.findUserByIdentity(email, password)
     .then((user) => {
-      const jwt = jsonWedToken.sign(
+      const token = jsonWedToken.sign(
         { _id: user._id },
         JWT_SECRET,
         { expiresIn: '7d' },
       );
-      res.cookie('jwt', jwt, { maxAge: 3600000 * 24 * 7, httpOnly: true })
-        .send({ message: 'Авторизация прошла успешно' });
+      res.send({ token });
+      // .send({ message: 'Авторизация прошла успешно' });
     })
     .catch(next);
 };

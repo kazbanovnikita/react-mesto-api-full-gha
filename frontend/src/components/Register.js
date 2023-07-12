@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React from "react";
 import AuthForm from "./AuthForm";
 
 function Register({onRegister, values, setValues}) {

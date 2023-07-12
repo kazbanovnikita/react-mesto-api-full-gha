@@ -47,7 +47,7 @@ function App() {
   }, [loggedIn]);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((item) => item._id === currentUser._id);
+    const isLiked = card.likes.some((item) => item === currentUser._id);
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
@@ -88,6 +88,7 @@ function App() {
   }
 
   function closeAllPopups() {
+    console.log(currentUser)
     setIsEditProfilePopupOpen(false);
     setIsAddCardPopupOpen(false);
     setIsAvatarPopupOpen(false);
@@ -163,10 +164,11 @@ function App() {
   }
 
   function handleLogin(data) {
+    console.log(data)
     return auth
       .login(data)
       .then((data) => {
-        console.log(data);
+        console.log(data)
         localStorage.setItem("jwt", data.token);
         setLoggedIn(true);
         handleTokenCheck();
@@ -187,7 +189,7 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            setUserEmail(res.data.email);
+            setUserEmail(res.email);
           }
         })
         .catch((err) => {

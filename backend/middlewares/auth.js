@@ -7,18 +7,19 @@ const { JWT_SECRET } = require('../utils/constans');
 const handleAuthError = (req, res, next) => next(new NotFoundAuthError('Пожалуйста, аторизируйтесь'));
 
 const auth = (req, res, next) => {
-  const token = req.cookies.jwt;
   let payload;
 
   try {
+    const { authorization } = req.headers;
+    const token = authorization.replace('Bearer ', '');
     if (!token) {
       return handleAuthError(req, res, next);
     }
     payload = jwt.verify(token, JWT_SECRET);
+    req.user = payload;
   } catch (err) {
     return handleAuthError(req, res, next);
   }
-
   req.user = payload;
 
   return next();
