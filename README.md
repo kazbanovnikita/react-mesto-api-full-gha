@@ -11,6 +11,6 @@
 
 IP-адрес x.x.x.x
 
-Frontend https://...
+Frontend https://nik24-mesto.nomoredomains.work
 
-Backend https://...
+Backend https://api.nik24-mesto.nomoredomains.work
