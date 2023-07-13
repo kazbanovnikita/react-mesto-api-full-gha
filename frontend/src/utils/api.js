@@ -4,7 +4,6 @@ class Api {
   }
 
   _checkResponse(res) {
-    console.log(res)
     if (res.ok) {
       return res.json();
     }
@@ -123,5 +122,5 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: "http://api.nik24-mesto.nomoredomains.work"
+  baseUrl: "https://api.nik24-mesto.nomoredomains.work"
 });

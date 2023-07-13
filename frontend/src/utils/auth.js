@@ -1,4 +1,4 @@
-export const baseUrl = "http://api.nik24-mesto.nomoredomains.work";
+export const baseUrl = "https://api.nik24-mesto.nomoredomains.work";
 
 function checkResponse(res) {
   if (res.ok) {

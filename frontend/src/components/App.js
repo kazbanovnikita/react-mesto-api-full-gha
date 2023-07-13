@@ -88,7 +88,6 @@ function App() {
   }
 
   function closeAllPopups() {
-    console.log(currentUser)
     setIsEditProfilePopupOpen(false);
     setIsAddCardPopupOpen(false);
     setIsAvatarPopupOpen(false);
@@ -164,7 +163,6 @@ function App() {
   }
 
   function handleLogin(data) {
-    console.log(data)
     return auth
       .login(data)
       .then((data) => {
