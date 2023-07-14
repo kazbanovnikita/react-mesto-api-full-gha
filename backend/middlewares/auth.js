@@ -1,8 +1,10 @@
+/* eslint-disable import/newline-after-import */
 // eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require('jsonwebtoken');
 
 const NotFoundAuthError = require('../erorrs/notFoundAuthError');
-const { JWT_SECRET } = require('../utils/constans');
+const { NODE_ENV, JWT_SECRET } = process.env;
+// const { JWT_SECRET } = require('../utils/constans');
 
 const handleAuthError = (req, res, next) => next(new NotFoundAuthError('Пожалуйста, аторизируйтесь'));
 
@@ -15,7 +17,7 @@ const auth = (req, res, next) => {
     if (!token) {
       return handleAuthError(req, res, next);
     }
-    payload = jwt.verify(token, JWT_SECRET);
+    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'secret');
     req.user = payload;
   } catch (err) {
     return handleAuthError(req, res, next);

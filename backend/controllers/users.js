@@ -3,7 +3,9 @@
 const bcrypt = require('bcryptjs');
 const jsonWedToken = require('jsonwebtoken');
 const User = require('../models/user');
-const { ERROR_CODE_UNIQUE, JWT_SECRET, STATUS_OK } = require('../utils/constans');
+const { ERROR_CODE_UNIQUE, STATUS_OK } = require('../utils/constans');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const NotFoundError = require('../erorrs/notFoundError');
 const InvalidDataError = require('../erorrs/invalidDataErorr');
@@ -101,7 +103,7 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jsonWedToken.sign(
         { _id: user._id },
-        JWT_SECRET,
+        NODE_ENV === 'production' ? JWT_SECRET : 'secret',
         { expiresIn: '7d' },
       );
       res.send({ token });
